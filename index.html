@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb"><title>Smart Route Finder · DAA Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Smart Route Finder home"><span class="brand-mark">↗</span><span>PATHFINDER<span class="brand-sub">DAA LAB PROJECT</span></span></a>
+    <div class="top-meta"><span class="live-dot"></span> INTERACTIVE ALGORITHM VISUALIZER <span class="version">v1.0</span></div>
+  </header>
+  <main>
+    <section class="intro">
+      <div><div class="eyebrow"><span class="eyebrow-line"></span> DESIGN &amp; ANALYSIS OF ALGORITHMS</div>
+        <h1>Smart Route Finder</h1><p>Explore how algorithms find the shortest way through a network of roads.</p>
+      </div>
+      <div class="intro-badge"><span>⌁</span><div><b>Weighted graph</b><small>9 locations · 12 roads</small></div></div>
+    </section>
+    <section class="workspace">
+      <aside class="sidebar">
+        <div class="panel-heading"><span class="step-number">01</span><div><h2>Plan your route</h2><p>Configure a search across the network.</p></div></div>
+        <label class="field-label" for="algorithm">SEARCH ALGORITHM</label>
+        <div class="select-wrap"><select id="algorithm"><option value="dijkstra">Dijkstra's algorithm</option><option value="astar">A* search</option></select><span>⌄</span></div>
+        <div class="route-fields"><div><label class="field-label" for="source">START LOCATION</label><div class="select-wrap"><select id="source"></select><span>⌄</span></div></div><div class="swap-icon">↓</div><div><label class="field-label" for="target">DESTINATION</label><div class="select-wrap"><select id="target"></select><span>⌄</span></div></div></div>
+        <button class="primary-btn" id="find"><span>⌕</span> Find shortest route <span class="button-arrow">→</span></button>
+        <div class="divider"></div>
+        <div class="playback-heading"><span class="step-number">02</span><div><h2>Watch it work</h2><p>Move through the search one step at a time.</p></div></div>
+        <div class="playback-controls"><button id="play" class="play-btn" aria-label="Play search">▶</button><button id="step" class="step-btn">Next step <span>→</span></button><button id="reset" class="reset-btn" aria-label="Reset">↺</button></div>
+        <div class="progress-meta"><span>SEARCH PROGRESS</span><span id="progress-label">Ready to begin</span></div><div class="progress-track"><div id="progress-fill"></div></div>
+        <div class="stats-grid"><div class="stat"><span class="stat-icon purple">↝</span><div><small>ROUTE DISTANCE</small><b id="distance">— <em>km</em></b></div></div><div class="stat"><span class="stat-icon blue">◉</span><div><small>LOCATIONS CHECKED</small><b id="visited-count">0</b></div></div></div>
+        <div class="complexity"><div><span>TIME COMPLEXITY</span><b id="complexity">O(V² + E)</b></div><div><span>SPACE COMPLEXITY</span><b>O(V + E)</b></div></div>
+        <div class="hint"><span>✦</span><p><b>Try this:</b> Switch between Dijkstra and A* with the same start and destination to compare how many locations each one explores.</p></div>
+      </aside>
+      <section class="map-panel">
+        <div class="map-toolbar"><div><div class="map-title">CITY NETWORK <span class="live-tag"><i></i> LIVE</span></div><div class="map-subtitle">Select a start location by clicking a node</div></div><div class="map-tools"><button id="zoom-out" aria-label="Zoom out">−</button><span id="zoom-level">100%</span><button id="zoom-in" aria-label="Zoom in">+</button></div></div>
+        <div class="map-canvas"><svg id="map" viewBox="0 0 780 480" role="img" aria-label="Weighted city road network"></svg><div class="map-caption"><span class="north">N</span><span class="north-arrow">↑</span><span>NETWORK VIEW <b>·</b> EST. DISTANCES · KM</span></div>
+          <div class="map-legend"><span><i class="legend-dot start"></i>Start</span><span><i class="legend-dot end"></i>Destination</span><span><i class="legend-dot frontier"></i>Frontier</span><span><i class="legend-dot visited"></i>Visited</span><span><i class="legend-dot route"></i>Route</span></div>
+        </div>
+        <div class="result-bar"><div class="result-icon">⌁</div><div class="result-copy"><b id="result-title">Ready when you are</b><span id="result-message">Choose two locations and find the shortest route.</span></div><div class="result-chip" id="result-chip">AWAITING SEARCH</div></div>
+      </section>
+    </section>
+    <section class="bottom-grid">
+      <article class="info-card"><div class="card-title"><span class="card-icon violet">⌘</span><div><h3>How the search works</h3><p>A quick guide to what you're seeing.</p></div></div><div class="how-steps"><div><i>1</i><span><b>Pick a candidate</b><small>The algorithm chooses the most promising location from the frontier.</small></span></div><div><i>2</i><span><b>Check its roads</b><small>Neighbor distances are updated if a shorter way is found.</small></span></div><div><i>3</i><span><b>Trace the route</b><small>Once the destination is reached, follow saved links back to the start.</small></span></div></div></article>
+      <article class="info-card"><div class="card-title"><span class="card-icon amber">◷</span><div><h3>Algorithm at a glance</h3><p id="algo-description">Dijkstra expands outward in order of known travel distance.</p></div></div><div class="formula" id="formula">priority = distance from start <span>·</span> optimal for non-negative roads</div><div class="log-heading"><b>SEARCH ACTIVITY</b><button id="clear-log">CLEAR</button></div><div class="activity-log" id="log" aria-live="polite"><div class="log-empty"><span>◷</span> Search events will appear here as the algorithm runs.</div></div></article>
+    </section>
+    <footer><span>PATHFINDER <b>·</b> DAA VISUALIZER</span><span>Built for learning algorithms, one location at a time.</span><a href="README.md">Project guide ↗</a></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
+
+
+
